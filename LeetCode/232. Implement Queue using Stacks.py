@@ -2,7 +2,6 @@ class MyQueue:
 
     def __init__(self):
         self.item=[]
-        self.que=[]
         
 
     def push(self, x: int) -> None:
