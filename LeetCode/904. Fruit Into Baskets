@@ -1,0 +1,22 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        res = 0
+        d = defaultdict(int)
+        l = r = 0
+        
+        while r < len(fruits):
+            if len(d) < 2:
+                d[fruits[r]] += 1
+                r += 1
+            elif len(d) == 2 and fruits[r] in d:
+                d[fruits[r]] += 1
+                r += 1
+            elif len(d) == 2 and fruits[r] not in d:
+                d[fruits[l]] -= 1
+                if d[fruits[l]] == 0:
+                    del d[fruits[l]]
+                l+= 1
+                
+            res = max(res,r -l)
+        
+        return res
