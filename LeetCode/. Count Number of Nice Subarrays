@@ -1,0 +1,13 @@
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        prefix = list(accumulate([0 if num % 2 == 0 else 1 for num in nums]))
+        print(prefix)
+        d = defaultdict(int)
+        d[0] = 1
+        res = 0
+        
+        for num in prefix:
+            if num - k in d:
+                res += d[num - k]
+            d[num] += 1
+        return res
