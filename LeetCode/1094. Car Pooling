@@ -1,0 +1,20 @@
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        larger_num = -1
+        cap = 0
+        
+        for trip in trips:
+            larger_num = max(larger_num,trip[2])
+        
+        arr = [0]*(larger_num+1)
+        
+        for trip in trips:
+            numPas, start, end = trip
+            arr[start] += numPas
+            arr[end] -= numPas
+        
+        for index in range(larger_num + 1):
+            cap += arr[index]
+            if cap > capacity:
+                return False
+        return True
