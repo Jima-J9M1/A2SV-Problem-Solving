@@ -1,0 +1,34 @@
+class Solution:
+    def garbageCollection(self, garbage: List[str], travel: List[int]) -> int:
+        # hint-1:Where can we save time? By not visiting all the house
+        # hint-2 For each type of garbage, find the house with the highest index that       #has at least 1 unit of this type of garbabe
+        prefix_sum = [0] + list(itertools.accumulate(travel))
+        gar = ["G","M","P"]
+        index = []
+        count = 0
+        for gb in gar:
+            right = len(garbage)-1
+            while right >= 0:
+                count = garbage[right].count(gb)
+                if count > 0:
+                    break
+                right -= 1
+            index.append(right)
+        sum_val = []
+        for l,gb in enumerate(gar):
+            sum = 0
+            for r in range(index[l]+1):
+                sum += garbage[r].count(gb)
+            sum_val.append(sum)
+        result = 0
+        print(index,prefix_sum,sum_val)#[3,-1,2]
+        for r in range(len(index)):
+            if index[r] > -1:
+                result += (prefix_sum[index[r]]+sum_val[r])
+        return result
+
+ 
+
+
+
+        # print(index,prefix_sum)
