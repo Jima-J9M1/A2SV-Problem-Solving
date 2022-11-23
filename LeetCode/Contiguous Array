@@ -1,0 +1,19 @@
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        preSum = 0
+        count = {}
+        res = 0
+
+        for idx, num in enumerate(nums):
+            if num == 0:
+                preSum -= 1
+            else:
+                preSum += 1
+            if preSum == 0:
+                res = max(res,idx + 1)
+            if preSum not in count:
+                count[preSum] = idx
+            else:
+                res = max(res, idx - count[preSum])
+        
+        return res
