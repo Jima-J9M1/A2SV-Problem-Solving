@@ -1,0 +1,17 @@
+class Solution:
+    def minimumSum(self, num: int) -> int:
+        num = str(num)
+        num = [x for x in num]
+        print(num)
+        num1 = min(num)
+        num.remove(num1)
+        num2 = max(num)
+        num.remove(num2)
+        num3 = min(num)
+        num.remove(num3)
+        num4 = max(num)
+        num.remove(num4)
+        num1_num2 = str(num1) + str(num2)
+        num3_num4 = str(num3) + str(num4)
+        
+        return (int(num1_num2)) +int( num3_num4)
