@@ -1,0 +1,20 @@
+class Solution:
+    def diagonalSort(self, mat: List[List[int]]) -> List[List[int]]:
+        map = defaultdict(list)
+
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                map[i - j].append(mat[i][j])
+        
+        for rw in map:
+            map[rw].sort(reverse=True)
+
+            
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                diagonal = i - j
+                element = map[diagonal].pop()
+                mat[i][j] = element
+        
+        return mat
+        
