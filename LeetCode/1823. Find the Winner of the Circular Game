@@ -1,0 +1,18 @@
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        ind = []
+        for i in range(1,n+1):
+            ind.append(i)
+        print(ind)
+        while len(ind) > 1:
+            count = 0
+            while count != k:
+                count += 1
+                if count == k:
+                    ind.remove(ind[0])
+                else:
+                    ele = ind[0]
+                    ind.remove(ind[0])
+                    ind.append(ele)
+        return ind[0]
+                
