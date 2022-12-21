@@ -1,0 +1,10 @@
+from collections import defaultdict,Counter
+n = int(input())
+rooms = list(map(int,input().split()))
+result = Counter(rooms)
+ans = 0
+for inx,val in enumerate(result):
+    if result[val] == 1:
+        ans = val
+
+print(ans)
