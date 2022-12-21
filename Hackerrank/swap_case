@@ -1,0 +1,16 @@
+def swap_case(s):
+    new_str = ""
+    for st in s:
+        if st.isalpha():
+            if st.islower():
+                val = st
+                new_str += val.upper()
+            else:
+                new_str += st.lower()
+        else:
+            new_str += st
+            pass
+    return new_str
+            
+            
+  
