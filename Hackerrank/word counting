@@ -1,0 +1,17 @@
+from collections import Counter,defaultdict
+n = int(input())
+arr_str = []
+arr_set = set()
+word = defaultdict(int)
+ans = []
+for ind in range(n):
+    val = input()
+    if val not in arr_set:
+        arr_str.append(val)
+        arr_set.add(val)
+    word[val] += 1
+
+for val in arr_str:
+    ans.append(word[val])
+print(len(ans))
+print(*ans)
