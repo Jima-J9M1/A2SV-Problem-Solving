@@ -1,0 +1,12 @@
+happines=0
+l=input().split()
+n,m=int(l[0]),int(l[1])
+orginal=input().split()
+listA=set(input().split())
+listB=set(input().split())
+for i in orginal:
+    if i in listA:
+        happines=happines+1
+    if i in listB:
+        happines=happines-1
+print(happines)
