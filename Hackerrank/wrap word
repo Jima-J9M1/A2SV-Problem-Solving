@@ -1,0 +1,20 @@
+import textwrap
+
+def wrap(string, max_width):
+    left = 0
+    right = 1
+    new_arr = ""
+    length = len(string)
+    for right in range(length):
+        if (right - left + 1)  == max_width:
+            new_arr +=  string[left:right + 1] + '\n'
+            left = right + 1
+        right += 1 
+    if left < length:
+        new_arr += string[left:]
+    return new_arr
+
+if __name__ == '__main__':
+    string, max_width = input(), int(input())
+    result = wrap(string, max_width)
+    print(result)
