@@ -1,0 +1,20 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+
+for i in range(n):
+    length = int(input())
+    arr = list(map(int,input().split())) 
+    left = 0
+    right = length - 1
+    max_val = float ('-inf')
+    ans = "Yes"
+    while left < right:
+        if max_val != float ("-inf"):
+                if arr[left] > max_val or arr[right] > max_val:
+                    ans = "No"
+                elif arr[left] > arr[right]:
+                    max_val = arr[left]
+                    left += 1
+                else:
+                    max_val = arr[right]
+                    right -= 1
