@@ -1,0 +1,11 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+ar_set = set(map(int,input().split()))
+n = int(input())
+ans = True
+for i in range(n):
+    new_set = set(map(int,input().split()))
+    val = ar_set.issuperset(new_set)
+    if val == False:
+        ans =  val
+        break 
+print(ans)
