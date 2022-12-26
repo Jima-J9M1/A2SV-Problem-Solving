@@ -1,0 +1,7 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+eng_stud = set(map(int,input().split()))
+m = int(input())
+fre_stud = set(map(int,input().split()))
+
+print(len(eng_stud.union(fre_stud)))
