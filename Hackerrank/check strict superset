@@ -9,3 +9,27 @@ for i in range(n):
         ans =  val
         break 
 print(ans)
+
+```
+arr_set = set(map(int,input().split()))
+size  = int(input())
+
+ans = True
+
+for index in range(size):
+    set_1 = set(map(int,input().split()))
+    length = len(set_1)
+    
+    if length >= len(arr_set):
+        ans = False
+        break
+        
+    for ele in set_1:
+        if ele in arr_set:
+            pass
+        else:
+            ans = False
+            break
+        
+print(ans)
+```
