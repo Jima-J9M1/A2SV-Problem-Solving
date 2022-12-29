@@ -1,0 +1,6 @@
+if __name__ == '__main__':
+    n = int(input())
+    
+    #power each index by 2
+    for index in range(n):
+        print(pow(index,2))
