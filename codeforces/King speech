@@ -1,0 +1,8 @@
+
+
+    size = int(input())
+     
+    for index in range(size):
+        word = input()
+        
+        print(word[:2]+ "..." + " " + word + "?")
