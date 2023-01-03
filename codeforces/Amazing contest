@@ -1,0 +1,23 @@
+
+
+    size = int(input())
+     
+    # for index in range(size):
+        
+    point = list( map(int, input().split() ))
+    min_val = point[0]
+    max_val = point[0]
+    length = len(point)
+    count = 0
+     
+    for key in range(1,length):
+        
+        if point[key] > max_val:
+            max_val = point[key]
+            count += 1
+        elif point[key] < min_val:
+            min_val = point[key]
+            count += 1
+        else:
+            pass
+    print(count)
