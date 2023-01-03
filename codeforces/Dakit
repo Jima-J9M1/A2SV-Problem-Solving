@@ -1,0 +1,32 @@
+size = int(input())
+
+
+for index in range(size):
+    phrase = set(input().split())
+    _dict = {}
+    
+    for word in phrase:
+        num = 0
+        for k in range(len(word)):
+            if word[k].isdigit():
+                 num = (num * 10) + int(word[k])
+                 if k == len(word) - 1:
+                    _dict[num] = word
+                 continue
+        
+            if num > 0:
+                _dict[num] = word
+    
+
+    stack = []
+    for  key in sorted(_dict):
+        n = key
+        val = list(_dict[key])
+        while (n//10) > 0:
+            rem = n % 10
+            val.remove(str(rem))
+            n //= 10
+            
+        val.remove(str(n))
+        stack.append("".join(val))
+    print(*stack)
