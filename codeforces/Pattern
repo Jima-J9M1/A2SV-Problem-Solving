@@ -1,0 +1,30 @@
+size = int(input())
+ 
+pattern = []
+ 
+for index in range(size):
+    
+    word = input()
+    pattern.append(word)
+    
+n = len(word)
+length = len(pattern)
+ 
+ 
+ 
+for index in range(n):
+    char = set()
+    
+    for key in range(length):
+        if pattern[key][index] == "?":
+            pass
+        else:
+            char.add(pattern[key][index])
+        
+    if len(char) == 0:
+        print("b",end="")
+    elif len(char) == 1:
+        val = list(char)
+        print(val[0],end="")
+    else:
+        print("?",end="")
