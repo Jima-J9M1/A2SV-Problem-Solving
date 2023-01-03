@@ -1,0 +1,33 @@
+    n,m = list(map(int,input().split()))
+     
+    theorem = list(map(int,input().split()))
+    behave = list(map(int,input().split()))
+     
+     
+    total = 0
+     
+    for index in range(n):
+        if behave[index] == 1:
+            total += theorem[index]
+     
+    left = 0
+    right = 0 
+    sum_of_zero_value = 0
+    count = 0
+     
+    while right < n:
+        
+        if behave[right] == 0:
+            count += theorem[right]
+            
+        if (right - left + 1) == m:
+            sum_of_zero_value = max(sum_of_zero_value,count)
+     
+            if behave[left] == 0:
+                count -= theorem[left]
+            left += 1
+        
+     
+        
+        right += 1
+    print(total + sum_of_zero_value)
