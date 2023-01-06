@@ -1,0 +1,29 @@
+    size = int(input())
+     
+     
+    for index in range(1,size+1):
+        tshirt_1 , tshirt_2 = map(str,input().split())
+        
+        if len(tshirt_1) == len(tshirt_2):
+            
+            if tshirt_1[-1] == tshirt_2[-1]:
+                print("=")
+            elif tshirt_1[-1] > tshirt_2[-1]:
+                print("<")
+            else:
+                print(">")
+        else:
+            if tshirt_1[-1] == tshirt_2[-1] and tshirt_1[-1] == "L":
+                if len(tshirt_1) > len(tshirt_2):
+                    print(">")
+                else:
+                    print("<")
+            elif tshirt_1[-1] == tshirt_2[-1] and tshirt_1[-1] == "S":
+                if len(tshirt_1) > len(tshirt_2):
+                    print("<")
+                else:
+                    print(">")
+            elif tshirt_1[-1] > tshirt_2[-1]:
+                print("<")
+            else:
+                print(">")
