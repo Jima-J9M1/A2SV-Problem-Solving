@@ -1,0 +1,24 @@
+    from collections import defaultdict
+    size = int(input())
+     
+     
+    for index in range(size):
+        _dict = defaultdict(int)
+        length, cost = map(int,input().split()) 
+        planet = list(map(int,input().split()))
+        orbits = set()
+        ans = 0
+        
+        #count the planet which is found in the same orbit
+        for ele in planet:
+            _dict[ele] += 1
+            orbits.add(ele)
+        
+     
+        for ele in orbits:
+            if _dict[ele] >= cost:
+                ans += cost
+                continue
+            ans += _dict[ele]
+            
+        print(ans)
