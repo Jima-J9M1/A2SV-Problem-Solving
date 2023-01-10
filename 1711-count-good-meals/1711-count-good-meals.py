@@ -2,7 +2,6 @@ class Solution:
     def countPairs(self, deliciousness: List[int]) -> int:
         
         power_of_two = []
-        food_value = defaultdict(int)
 
         modulo = 10**9 + 7
         value = 1
@@ -18,11 +17,14 @@ class Solution:
         food_items = defaultdict(int)
         count_good_meal = 0
         
+                 
         for ele in deliciousness:
             
+            # count if the element found in the collection of previous element                                            differnce with power of two                 
             if ele in food_items:
                 count_good_meal += food_items[ele]
-                
+            
+            # store the difference between the element from all power of two
             for new_ele in power_of_two:
                 val = new_ele - ele
                 food_items[val] +=1 
