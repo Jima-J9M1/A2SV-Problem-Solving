@@ -1,16 +1,20 @@
 class Solution:
     def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[List[int]]:
-        rule = [[-1,-1],[0,-1],[-1,0],[-1,1],[1,-1],[0,1],[1,1],[1,0]]
+        directions = [[-1,-1],[0,-1],[-1,0],[-1,1],[1,-1],[0,1],[1,1],[1,0]]
         ans = []
         
-        for ele in rule:
-            new_king = king
+        queen_check = set(map(tuple,queens))
+
+        
+        for pos in directions:
+            row,col = king
             
-            while (new_king[0] >= 0 and new_king[1] >= 0 ) and (new_king[0] <= 8 and new_king[1] <= 8 ) :
-                val_1 = new_king[0] + ele[0]
-                val_2 = new_king[1] + ele[1]
-                new_king = [val_1,val_2]
-                if new_king in queens:
-                    ans.append(new_king)
+            while 0 <= row < 8 and 0 <= col < 8:
+                
+                row  +=  pos[0]
+                col += pos[1]
+                
+                if (row,col) in queen_check:
+                    ans.append([row,col])
                     break
         return ans
