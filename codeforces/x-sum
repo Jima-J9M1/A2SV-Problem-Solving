@@ -1,0 +1,33 @@
+from collections import defaultdict
+size_of_test_case = int(input())
+
+for _ in range(size_of_test_case):
+    rows,cols = map(int,input().split())
+    grid = []
+    
+    for _ in range(rows):
+        row_val = list(map(int,input().split()))
+        grid.append(row_val)
+    
+    difference_of_row_col = defaultdict(int)
+    sum_of_row_col = defaultdict(int)
+    max_val = float ("-inf")
+    
+    length_grid = len(grid)
+    
+    for row,row_val in enumerate(grid):
+        
+        for col in range(len(row_val)):
+            sum_of_row_col[col + row] += row_val[col]
+            difference_of_row_col[row - col] += row_val[col]
+    
+    for row,row_val in enumerate(grid):
+        
+        for col in range(len(row_val)):
+            score = (sum_of_row_col[col + row] + difference_of_row_col[row - col]) - row_val[col]
+            
+            max_val = max(score,max_val)
+    print(max_val)
+            
+    
+    
