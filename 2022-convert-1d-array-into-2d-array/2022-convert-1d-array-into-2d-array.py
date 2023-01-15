@@ -7,13 +7,18 @@ class Solution:
         matrix = []
         length = len(original)
         new_val = []
-        
-        
+        ptr = 0
+        ptr2 = n
         #create new 2D array from 1D array
-        for index in range(length):
-            new_val.append(original[index])
-            if len(new_val) == n:
-                matrix.append(new_val)
-                new_val = []
+        for _ in range(m):
+            matrix.append(original[ptr:ptr2])
+            ptr += n
+            ptr2 += n
+            
+        # for index in range(length):
+        #     new_val.append(original[index])
+        #     if len(new_val) == n:
+        #         matrix.append(new_val)
+        #         new_val = []
         return matrix
         
