@@ -1,0 +1,42 @@
+size = int(input())
+ 
+directions = [[-1,-1],[-1,1],[1,-1],[1,1]]
+ 
+ 
+ 
+for _ in range(size):
+    input()
+    grid = []
+    for _ in range(8): 
+        
+        row_val =input()
+        grid.append(row_val)
+    
+    for row in range(8):
+        
+        for col in range(8):
+            left = 0
+            flag = False
+            
+            if grid[row][col] == "#":
+                while left < len(directions):
+                    pos_1 = directions[left][0]
+                    pos_2 = directions[left][1]
+                    
+                    new_row = pos_1 + row
+                    new_col = pos_2 + col
+                    
+                    if 0 <= new_row < 8 and 0 <= new_col < 8 and grid[new_row][new_col] == "#":
+                        flag = True
+                        left += 1
+                        continue
+                    else:
+                        flag = False
+                        break
+                    
+ 
+                if flag == True:
+                    print(row + 1,col + 1)
+                    
+                    
+    
