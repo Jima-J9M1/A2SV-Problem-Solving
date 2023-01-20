@@ -1,0 +1,10 @@
+input().split())
+ 
+ans = 0
+if int(a) == int(b):
+    ans = int(a) + int(b) + (2 * int(ab))
+elif (a - b) >= 1:
+    ans = (b + b + (2 * ab)) + 1
+elif a < b:
+    ans = (a + a + (2 * ab)) + 1
+print(ans)
