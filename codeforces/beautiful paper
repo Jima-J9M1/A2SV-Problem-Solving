@@ -1,0 +1,18 @@
+    size = int(input())
+     
+     
+    for _ in range(size):
+        arr_1= list(map(int,input().split()))
+        arr_2 = list(map(int,input().split()))
+        ans = "No"
+        
+        arr_1.sort()
+        arr_2.sort()
+        
+        if arr_1[-1] == arr_2[-1]:
+            if arr_1[0] + arr_2[0] == arr_1[-1]:
+                ans = "Yes"
+     
+                
+        
+        print(ans)
