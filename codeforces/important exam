@@ -1,0 +1,25 @@
+rt defaultdict
+a, b = map(int,input().split())
+ 
+ 
+ans = []
+ 
+for index in range(a):
+    ans.append(input())
+    
+    
+ 
+score = list(map(int,input().split()))
+total = 0
+ 
+for index in range(b):
+    new_set = defaultdict(int)
+    
+    for j in range(a):
+        new_set[ans[j][index]] += 1
+        
+ 
+        
+    max_val = max(new_set.values())
+    
+    total = total + (score[index] * max_val)
