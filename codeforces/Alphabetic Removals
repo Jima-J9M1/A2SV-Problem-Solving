@@ -1,0 +1,21 @@
+    from collections import Counter, defaultdict
+    n, k = map(int, input().split())
+    s= input()
+     
+    existance = defaultdict(list)
+     
+    for index, char in enumerate(s):
+        existance[char].append(index)
+     
+    for char in sorted(existance):
+        index = min(len(existance[char]), k)
+        existance[char] = set(existance[char][index:])
+        k -= index 
+        if k< 0:
+            break
+     
+    answer = ''
+    for index, char in enumerate(s):
+        if index in existance[char]:
+            answer += char
+    print(answer)
