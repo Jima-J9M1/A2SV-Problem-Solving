@@ -1,0 +1,18 @@
+ 
+ans = ""
+for index in range(len(digits)):
+    
+    t = int(digits[index])
+    
+    val = 9 - t
+    
+    if val > t:
+        ans += str(t)
+        continue
+    elif index == 0 and val == 0:
+        ans += str(t)
+        continue
+    
+    ans += str(val)
+ 
+print(int(ans))
