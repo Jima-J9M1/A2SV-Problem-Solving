@@ -1,18 +1,19 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
         
-        for index in range(1,len(heights)):
-            right = index
-            height_val = heights[right]
-            names_val = names[right]
+        max_val = max(heights)
+        arr = [0] * (max_val + 1)
+        arr_names = [0] * (max_val + 1)
+        
+        for index in range(len(heights)):
+            arr[heights[index]] = 1
+            arr_names[heights[index]] = names[index]
             
-            #sort each element to the left              
-            while right > 0 and heights[right - 1] < height_val:
-                heights[right] = heights[right - 1]
-                names[right] = names[right - 1]
-                right -= 1
+        res = []
+        for index in range(len(arr) - 1, -1,-1):
+            if arr[index] > 0:
+                res.append(arr_names[index])
                 
-            heights[right] = height_val            
-            names[right] = names_val
+        
            
-        return names
+        return res
