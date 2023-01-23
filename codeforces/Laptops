@@ -1,0 +1,20 @@
+
+
+    size = int(input())
+     
+    laptops = []
+    for _ in range(size):
+        val = list(map(int,input().split()))
+        laptops.append(val)
+     
+    laptops.sort()
+     
+    ans = "Poor Alex"
+     
+    for  index in range(size - 1):
+        if laptops[index][0] < laptops[index + 1][0]:
+            if laptops[index][1] > laptops[index + 1][1]:
+                ans = "Happy Alex"
+                break
+        
+    print(ans)
