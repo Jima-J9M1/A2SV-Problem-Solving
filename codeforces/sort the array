@@ -1,0 +1,41 @@
+    size = int(input())
+     
+    birthday = list(map(int,input().split()))
+     
+    left = 0
+    right = 0
+    max_diff = 0
+    segement = []
+     
+    if size == 1:
+        print("yes")
+        print(1,1)
+     
+    else:
+        for index in range(1,len(birthday)):
+            if birthday[right] > birthday[index]:
+                right += 1
+            else:
+                left = index
+                right = index 
+                
+            if (right - left + 1) > max_diff:
+                segement = [left,right]
+                max_diff = (right - left + 1)
+                
+        left = segement[0]
+        right = segement[1]
+        
+        
+        res = sorted(birthday[left:right + 1])
+        birthday[left:right + 1] = res
+        check = sorted(birthday)
+        
+        if check == birthday:
+            print("yes")
+            print(left+1,right + 1)
+        else:
+            print("no")
+     
+        
+        
