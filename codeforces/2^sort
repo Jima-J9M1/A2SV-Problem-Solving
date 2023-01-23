@@ -1,0 +1,26 @@
+
+
+    size = int(input())
+     
+    for _ in range(size):
+        
+        n, k =  map(int,input().split())
+        arr = list(map(int,input().split()))
+        
+        prefix = [0] * (n) 
+        count = 0
+        
+        for i in range(n - 1):
+            
+            if arr[i] < 2 * arr[i + 1]:
+                prefix[i + 1] = prefix[i] + 1
+            else:
+                prefix[i + 1] = prefix[i]
+                
+        for i in range(n - k):
+            
+            if prefix[i + k] - prefix[i] == k:
+                count += 1
+            
+            
+        print(count)
