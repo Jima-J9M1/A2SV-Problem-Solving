@@ -3,14 +3,17 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        for index in range(1,len(nums)):
-            right = index
-            val = nums[right]
-            
-            while right > 0 and nums[right - 1] > val:
-                nums[right] = nums[right - 1]
-                right -= 1
-                
-            nums[right] = val
+        count_ele = [0]*(4)
         
+        for num in nums:
+            count_ele[num] += 1
+            
+        target = 0
+        
+        for key,val in enumerate(count_ele):
+            
+            for i in range(val):
+                nums[target] = key
+                target += 1           
+
         return nums
