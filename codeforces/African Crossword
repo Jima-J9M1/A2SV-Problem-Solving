@@ -1,0 +1,52 @@
+from collections import defaultdict
+
+n,m = map(int,input().split())
+ 
+grid = []
+repeated_ele = defaultdict(list)
+ 
+for _ in range(n):
+    input_val = input()
+    row_val = [val for val in input_val]
+    grid.append(row_val)
+    
+# Check the row value 
+for row in range(len(grid)):
+    
+    
+    for col in range(len(grid[0])):
+        
+        
+       repeated_ele[grid[row][col]].append((row,col))
+
+res = []
+for key in repeated_ele:
+    
+    if len(repeated_ele[key]) > 1:
+        
+        for index in range(len(repeated_ele[key])):
+            ele_1 = repeated_ele[key][index]
+            flag  = False
+            for j in range(len(repeated_ele[key])):
+                 
+                if index != j:
+                    ele_2 = repeated_ele[key][j]
+                    # print(ele_1,ele_2)
+                    if ele_1[0] != ele_2[0] and ele_1[1] != ele_2[1]:
+                        flag = True
+                    else:
+                        flag = False
+                        break
+                        
+            if flag:
+                res.append([ele_1[0],ele_1[1]])
+    else:
+        res.append([ repeated_ele[key][0][0], repeated_ele[key][0][1] ])
+
+res.sort()   
+
+ans = ""
+for ele in res:
+    ans += grid[ele[0]][ele[1]]
+    
+print(ans)
