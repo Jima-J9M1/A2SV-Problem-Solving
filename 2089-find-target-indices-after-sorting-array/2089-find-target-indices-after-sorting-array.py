@@ -1,6 +1,6 @@
 class Solution:
     def targetIndices(self, nums: List[int], target: int) -> List[int]:
-        nums.sort()
+        nums = sorted(nums)
         res = []
         length = len(nums)
         
