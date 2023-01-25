@@ -1,0 +1,22 @@
+    n, m = map(int,input().split())
+     
+    arr = list(map(int,input().split()))
+    arr2 = list(map(int,input().split()))
+     
+    merged = []
+    left = 0
+    right = 0
+     
+    while left < n and right < m:
+        
+        if arr[left] > arr2[right]:
+            merged.append(arr2[right])
+            right += 1
+        else:
+            merged.append(arr[left])
+            left += 1
+        
+    merged.extend(arr[left:])
+    merged.extend(arr2[right:])
+     
+    print(*merged)
