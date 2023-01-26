@@ -1,6 +1,7 @@
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
         
+        #concat two key and compare each other if greater and equal then return -1 else return 1         
         def sortingNum(a,b):
             val_1 = a + b
             val_2 = b + a
@@ -46,14 +47,42 @@ class Solution:
 #                         return -1
 #                     else:
 #                         return 1
-                    
+                   
         if sum(nums) == 0:
             return "0"
         
         num_val = [str(x) for x in nums]  
-        res = sorted(num_val, key=cmp_to_key(sortingNum))
+        left = 0
+        right = 0
         
-        return "".join(res)
+        #Sort with insertion logic
+        for index in range(1,len(nums)):
+            
+            right = index
+            val = num_val[index]
+            flag = sortingNum(num_val[right - 1], val)
+            
+            while right > 0 and flag == 1:
+                num_val[right] = num_val[right - 1]
+                right -= 1
+                
+                if right > 0:
+                    flag = sortingNum(num_val[right - 1],val)
+            
+            num_val[right] = val
+            
+            
+        return "".join(num_val)
+                
+            
+            
+        
+        
+        
+#         num_val = [str(x) for x in nums]  
+#         res = sorted(num_val, key=cmp_to_key(sortingNum))
+        
+#         return "".join(res)
                         
                 
         
