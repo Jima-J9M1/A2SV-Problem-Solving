@@ -15,3 +15,27 @@ while ptr2 < n and ptr1 < m:
 while ptr2 < n:
     print(ptr1,end=" ")
     ptr2 += 1
+
+
+#Another method
+
+```
+    len_arr1, len_arr2 = map(int,input().split())
+     
+    arr1 = list(map(int,input().split()))
+    arr2 = list(map(int, input().split()))
+     
+    ptr1 = 0
+    ptr2 = 0
+    res = []
+     
+    while ptr2 < len_arr2:
+        
+        while ptr1 < len_arr1 and arr2[ptr2] > arr1[ptr1]:
+            ptr1 += 1
+            
+        res.append(ptr1)
+        ptr2 += 1
+     
+    print(*res)
+```
