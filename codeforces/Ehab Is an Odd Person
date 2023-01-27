@@ -1,0 +1,21 @@
+    size = int(input())
+     
+    arr = list(map(int,input().split()))
+     
+    even = 0
+    odd = 0
+     
+    for index in range(size):
+        if arr[index] % 2 == 0:
+            even = 1
+        else:
+            odd = 1
+        
+        if even and odd:
+            break
+     
+    if even and odd:
+        arr.sort()
+        print(*arr)
+    else:
+        print(*arr)
