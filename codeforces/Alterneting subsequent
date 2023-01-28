@@ -1,0 +1,35 @@
+size = int(input())
+
+for _ in range(size):
+    arr_len = int(input())
+    arr = list(map(int,input().split()))
+    
+    right = 0
+    flag = arr[0] > 0
+    max_val = float ("-inf")
+    max_sum = 0
+    while right < arr_len:
+        
+        while right < arr_len and flag:
+            max_val = max(max_val,arr[right])
+            right += 1
+            
+            if right < arr_len and arr[right] < 0:
+                flag = False
+            
+        if max_val != float("-inf"):
+            max_sum += max_val
+        
+        max_val = float("-inf")
+        
+        while right < arr_len and not flag:
+            max_val = max(max_val,arr[right])
+            right += 1
+            
+            if right < arr_len and arr[right] > 0:
+                flag = True
+        
+        if max_val != float("-inf"):
+            max_sum += max_val
+    
+    print(max_sum)
