@@ -1,0 +1,37 @@
+ize = int(input())
+ 
+arr = list(map(int,input().split()))
+ 
+ 
+left = 0
+right = size - 1
+serja = 0
+dima = 0
+ 
+while left <= right:
+    # FOr Serja
+    if left < right:
+        if arr[left] > arr[right]:
+            serja += arr[left]
+            left += 1
+        else:
+            serja += arr[right]
+            right -= 1
+    elif left == right:
+        serja += arr[left]
+        left += 1
+    
+    # For Dima
+    if left < right: 
+        if arr[left] > arr[right]:
+            dima += arr[left]
+            left += 1
+        else:
+            dima += arr[right]
+            right -= 1
+    elif left == right:
+        dima += arr[left]
+        left += 1
+ 
+    
+print(serja,dima)
