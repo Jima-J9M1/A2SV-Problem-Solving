@@ -1,0 +1,27 @@
+size = int(input())
+
+for _ in range(size):
+    arr = input()
+    ptr1 = 0
+    res = []
+    
+    if len(arr) == 1:
+        print(arr[0])
+
+    else:
+        while ptr1 < len(arr) - 1:
+            if arr[ptr1] in res:
+                ptr1 += 1
+                continue
+
+            if  arr[ptr1] == arr[ptr1 + 1]:
+                ptr1 += 2
+            else:
+                res.append(arr[ptr1])
+                ptr1 += 1
+        
+        if ptr1 < len(arr) and arr[ptr1] not in res:
+            res.append(arr[ptr1])
+
+        res = "".join(sorted(res))
+        print(res)
