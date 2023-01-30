@@ -1,0 +1,39 @@
+size  = int(input())
+ 
+for _ in range(size):
+    rows,cols = map(int,input().split())
+    grid = []
+    for row in range(rows):
+        val = input()
+        row_val = [x for x in val]
+ 
+        grid.append(row_val)
+        
+    for col in range(cols):
+        count_stone = 0
+        
+        for row in range(rows):
+            if grid[row][col] == "*":
+                grid[row][col] = "."
+                count_stone += 1
+            
+            if grid[row][col] == "o" and count_stone:
+                c = row - 1 
+                
+                while 0 <= c < rows and count_stone > 0 and grid[c][col] != "o":
+                    grid[c][col] = "*"
+                    count_stone -= 1
+                
+                    c -= 1
+            
+            elif count_stone and row == rows - 1:
+                c = row
+                
+                while 0 <= c < rows and count_stone > 0:
+                    grid[c][col] = "*"
+                    count_stone -= 1
+                
+                    c -= 1
+                    
+    for row in range(rows):
+        print("".join(grid[row]))
