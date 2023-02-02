@@ -6,8 +6,14 @@
 
 class Solution:
     def deleteNode(self, node):
+        node.val = node.next.val
+        node.next = node.next.next
     
-        while node and node.next:
+        node = None
+        
+        
+    '''
+    while node and node.next:
             node.val = node.next.val
             
             if node.next.next == None:
@@ -15,5 +21,5 @@ class Solution:
                 break
                 
             node = node.next
+      '''
         
-        node = None
