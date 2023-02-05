@@ -18,7 +18,7 @@ class Solution:
             tail = tail.next
         
         if list1:
-            print(list1)
+
             tail.next = list1
         else:
             tail.next = list2
