@@ -1,0 +1,20 @@
+size = int(input())
+ 
+for _ in range(size):
+    n = int(input())
+ 
+    arr = list(map(int,input().split()))
+    
+    l,r = 0,n - 1
+    res = []
+    
+    while l < r:
+        res.append(arr[l])
+        res.append(arr[r])
+        l += 1
+        r -= 1
+        
+    if l == r:
+        res.append(arr[l])
+        
+    print(*res)
