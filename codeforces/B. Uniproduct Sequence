@@ -1,0 +1,27 @@
+    n = int(input())
+    arr = list(map(int,input().split()))
+     
+    count = 0
+    zero = 0
+    res = 0
+    neg = []
+    for i in range(n):
+        if arr[i] < 0:
+            val = 0
+            if arr[i] != -1:
+                val = arr[i] + 1
+                res += abs(val)
+            neg.append(val)
+            count += 1 
+        elif arr[i] > 0 and arr[i] != 1:
+            val = arr[i] - 1
+            res += abs(val)
+        elif arr[i] == 0:
+            res += 1
+            zero += 1
+     
+    if count % 2 == 1:
+        if zero == 0:
+            res += 2
+        
+    print(res)
