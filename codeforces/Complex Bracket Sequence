@@ -1,0 +1,28 @@
+    arr = input()
+    left = 0
+    right = len(arr) - 1
+    res = []
+    max_val = 0
+    min_op = 0
+     
+    while left < right:
+        if arr[left] == "(" and arr[right] == ")":
+            res.append(left + 1)
+            res.append(right + 1)
+     
+            left += 1
+            right -= 1
+            min_op = 1
+            continue
+     
+        if arr[left] != "(":
+            left += 1
+     
+     
+        if arr[right] != ")":
+            right -= 1
+     
+    if min_op > 0:
+        print(min_op)
+    print(len(res))    
+    print(*sorted(res))
