@@ -1,0 +1,32 @@
+def count(arr,n):
+    
+    left = 0
+    right = 0
+    count = 0
+    val = 0
+    
+    while right < len(arr):
+        val += arr[right]
+ 
+        while left < right and val > n:
+            val  -= arr[left]
+            left += 1
+            
+        if val <= n:
+            count += (right - left + 1)
+ 
+        right += 1
+    
+    return count
+            
+ 
+ 
+size,a,b = map(int,input().split())
+ 
+arr = list(map(int,input().split()))
+ 
+ 
+val1 = count(arr,a - 1)
+val2 = count(arr,b)
+print(val2 - val1)
+ 
