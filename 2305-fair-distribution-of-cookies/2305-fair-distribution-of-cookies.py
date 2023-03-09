@@ -1,14 +1,12 @@
 class Solution:
     def distributeCookies(self, cookies: List[int], k: int) -> int:
         
-        # if len(cookies) == k:
-        #     return max(cookies)
+        if len(cookies) == k:
+            return max(cookies)
         
         cookies.sort(reverse = True)
         self.minm = float("+inf")
         self.bucket = [0] * k
-        self.k = k
-        print(cookies)
         self.backTracking(cookies,0, k)
         return self.minm
     
