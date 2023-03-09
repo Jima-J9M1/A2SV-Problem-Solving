@@ -1,6 +1,5 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        nums = [num for num in range(1,n+1)]
         ans = []
         
         def backTracking(idx, arr):
@@ -8,13 +7,13 @@ class Solution:
                 ans.append(arr[:])
                 return
             
-            if idx >= len(nums):
+            if idx > n:
                 return
     
-            for i in range(idx,len(nums)):
-                arr.append(nums[i])
+            for i in range(idx, n+1):
+                arr.append(i)
                 backTracking(i+1, arr)
                 arr.pop()
         
-        backTracking(0, [])
+        backTracking(1, [])
         return ans
