@@ -6,30 +6,64 @@
 #         self.right = right
 class Solution:
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
-        self.arr = []
-        self.inorder(root)
+        mode = [[]]
         
-        count = Counter(self.arr)
+        self.traverse(root, mode, [float('-inf')], [0], [1])
         
-        max_val = max(count.values())
-        res = sorted(count, key= lambda x: count[x], reverse=True)
-        ans = []
+        return mode[0]
         
         
-        for i in range(len(res)):
-            
-            if count[res[i]] == max_val:
-                ans.append(res[i])
-                print(res[i])
+    def traverse(self,curr, mode, prev, cur_freq,  freq):
+        if not curr:
+            return # [Node.val, curr, maxFreq, list]
+        
+        self.traverse(curr.left, mode, prev, cur_freq, freq)
+        if prev[0] == float('-inf') or curr.val == prev[0]:
+            cur_freq[0] += 1            
+        else:
+            # mode[0] = [curr.val]
+            cur_freq[0] = 1
+        
+        if cur_freq[0] == freq[0]:
+                mode[0].append(curr.val)
                 
-        return ans
+        if cur_freq[0] > freq[0]:
+                mode[0] = [curr.val]
+                freq[0] = cur_freq[0]
+        prev[0] = curr.val
+        self.traverse(curr.right, mode, prev, cur_freq, freq)
+        
+        
+        
+        
+        
+        
+        
+        
+#         self.arr = []
+#         self.inorder(root)
+        
+#         count = Counter(self.arr)
+        
+#         max_val = max(count.values())
+#         res = sorted(count, key= lambda x: count[x], reverse=True)
+#         ans = []
+        
+        
+#         for i in range(len(res)):
+            
+#             if count[res[i]] == max_val:
+#                 ans.append(res[i])
+#                 print(res[i])
+                
+#         return ans
     
-    def inorder(self,root):
+#     def inorder(self,root):
         
-        if root is None:
-            return 
+#         if root is None:
+#             return 
         
         
-        self.inorder(root.left)
-        self.arr.append(root.val)
-        self.inorder(root.right)
+#         self.inorder(root.left)
+#         self.arr.append(root.val)
+#         self.inorder(root.right)
