@@ -1,0 +1,21 @@
+def superDigit(n, k):
+    # Write your code here
+    res = 0
+    res = sum(map(int,n))
+    res = str(res) * k
+    
+    
+    
+    val = rec(res)
+    
+    return val
+
+def rec(n):
+    if int(n) // 10 == 0:
+        return n 
+    
+    res = sum(map(int,n))
+    ret = rec(str(res))
+    return ret
+    
+    
