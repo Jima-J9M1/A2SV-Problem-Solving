@@ -1,40 +1,23 @@
 class Solution:
     def splitString(self, s: str) -> bool:
-        self.check = []
+        numb = [[]]
         
-        ans = self.backTracking(0,s)
+        return self.checkString(s,numb,0)
         
-        return ans
-       
         
-    def backTracking(self,idx,s):
-
-
+    def checkString(self, s, numb, idx):
+        
         if len(s) <= idx:
-            return len(self.check) >= 2
-
-
-        for i in range(idx,len(s)):
-
-            val = int(s[idx : i + 1])
-            
-
-            if len(self.check) == 0 or val == self.check[-1] - 1:
-
-                self.check.append(val)
-                if self.backTracking(i + 1, s):
-                    
-                    return True
-
-                self.check.pop()
-
-
-        return False
-
+            return len(numb[0]) >= 2
         
-        
-                    
+        for i in range(idx, len(s)):
+            val = int(s[idx: i + 1])
+            if len(numb[0]) == 0 or val == numb[0][-1] - 1:
                 
+                numb[0].append(val)
+                if self.checkString(s, numb, i + 1):
+                    return True
+                
+                numb[0].pop()
             
-            
-        
+        return False
