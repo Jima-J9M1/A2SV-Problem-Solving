@@ -1,0 +1,26 @@
+def intInput():return int(input())
+def listInput(): return list(map(int,input().split()))
+def mapInput(): return map(int,input().split())
+def sortInput(): return sorted(list(map(int,input().split())))
+
+def contest():
+    a, b = mapInput()
+    total = a + b
+    right = min(a, b)
+    left = 0
+    
+    while left <= right:
+        mid = left + (right - left)// 2
+
+        if (mid * 4) > total:
+            right = mid - 1
+        else:
+            left = mid + 1
+        
+    print(right)
+    
+size = intInput()
+    
+for _ in range(size):
+    contest()
+    
