@@ -1,29 +1,40 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         
-        max_val = max(nums)
-        min_val = 0
+        def merge(nums1, nums2):
+            ptr1 = 0
+            ptr2 = 0
+            ans = []
+            # print(nums1, nums2)
+            while ptr1 < len(nums1) and ptr2 < len(nums2):
+                
+                if nums1[ptr1] < nums2[ptr2]:
+                    ans.append(nums1[ptr1])
+                    ptr1 += 1
+                    
+                else:
+                    ans.append(nums2[ptr2])
+                    ptr2 += 1
+                    
+            
+            if ptr1 < len(nums1):
+                ans += nums1[ptr1:]
+                
+            if ptr2 < len(nums2):
+                ans += nums2[ptr2:]
+                
+            return ans
         
-        if min(nums) < 0:
-            min_val = abs(min(nums))
-            count_num = [0] * (max_val + min_val + 1)
-        else:
-            count_num = [0] * (max_val + 1)
+        def mergeSort(left,right, nums):
+            if left == right:
+                return [nums[left]]
+            
+            mid = left + (right - left ) // 2 
+            
+            left = mergeSort(left, mid, nums)
+            right = mergeSort(mid + 1 , right, nums)
+            
+            return merge(left, right)
         
-        #count the value of the ele in nums and store it into with count_num with their index         
-        for index in range(len(nums)):
-            count_num[nums[index] + abs(min_val)] += 1
-        
-        val = 0
-        count = 0
-        
-        #count ele in count_num from reversed if the elem is greater than zero and compare to k          
-        
-        for index in range(len(count_num) - 1,-1,-1):
-            if count_num[index] > 0:
-                count += count_num[index]
-                if count >= k:
-                    val = index - min_val
-                    break
-        
-        return val
+        ans = mergeSort(0, len(nums)- 1, nums)
+        return ans[-k]
