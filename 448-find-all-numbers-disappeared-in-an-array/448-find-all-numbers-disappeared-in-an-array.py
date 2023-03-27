@@ -1,23 +1,24 @@
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         
-        def quickSort(num):
-            if len(num) <= 1:
-                return num
+#         def quickSort(num):
+#             if len(num) <= 1:
+#                 return num
             
-            pivot = num[0]
-            left = []
-            right = []
+#             pivot = num[0]
+#             left = []
+#             right = []
             
-            for i in range(1, len(num)):
-                if num[i] > pivot:
-                    right.append(num[i])
-                else:
-                    left.append(num[i])
+#             for i in range(1, len(num)):
+#                 if num[i] > pivot:
+#                     right.append(num[i])
+#                 else:
+#                     left.append(num[i])
                     
-            return quickSort(left) + [pivot] + quickSort(right)
+#             return quickSort(left) + [pivot] + quickSort(right)
         
-        arr = quickSort(nums)
+#         arr = quickSort(nums)
+        arr = sorted(nums)
         ans = []
         
         count = 1
