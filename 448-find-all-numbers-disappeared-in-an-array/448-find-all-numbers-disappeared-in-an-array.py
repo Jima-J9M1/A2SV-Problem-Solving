@@ -1,6 +1,32 @@
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         
+        indx = 0
+        ans = []
+        
+        while indx < len(nums):
+            postionOfValue = nums[indx] - 1
+            
+            if postionOfValue != indx:
+                
+                if nums[postionOfValue] != nums[indx]:
+                    nums[postionOfValue], nums[indx] = nums[indx], nums[postionOfValue]
+                    continue
+                    
+                
+            indx += 1
+        
+        indx = 0
+        
+        while indx < len(nums):
+            postionOfValue = nums[indx] - 1
+            
+            if postionOfValue != indx:
+                ans.append(indx + 1)
+                
+            indx += 1
+                
+        return ans
 #         def quickSort(num):
 #             if len(num) <= 1:
 #                 return num
@@ -18,6 +44,7 @@ class Solution:
 #             return quickSort(left) + [pivot] + quickSort(right)
         
 #         arr = quickSort(nums)
+"""     
         arr = sorted(nums)
         ans = []
         
@@ -42,3 +69,5 @@ class Solution:
             
         
         return ans
+        
+        """
