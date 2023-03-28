@@ -1,16 +1,23 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
         
-        val = -1
-        length = len(nums)
+        ans = 0
         
-        nums.sort()
+        indx = 0
         
-        # compare values of nums with the index of the loop through n size
-        for index in range(length):
+        while indx < len(nums):
+            postionOfValue = nums[indx] - 1
             
-            if nums[index] != index:
-                return index
+            if postionOfValue >= 0 and postionOfValue < len(nums) and postionOfValue != indx:
+                nums[indx], nums[postionOfValue] = nums[postionOfValue], nums[indx]
+                continue
+                
+            elif postionOfValue < 0 or postionOfValue >= len(nums):
+                ans = indx + 1
             
-        return length
+            indx += 1
+            
+            
+        return ans
+            
         
