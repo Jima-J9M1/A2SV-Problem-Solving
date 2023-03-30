@@ -1,0 +1,52 @@
+def II():return int(input())
+def LI(): return list(map(int,input().split()))
+def MI(): return map(int,input().split())
+def SI(): return sorted(list(map(int,input().split())))
+
+    
+def Mapping():
+    num = II()
+    i = 1
+    indx, count = count_bit(num)
+    
+    if num == 1:
+        print(3)
+        return 
+    
+    ans = 1 << indx
+    
+    if count == 1:
+        ans += 1
+        
+    print(ans)
+        
+    
+    
+
+def count_bit(num):
+    
+    i = 1
+    count = 0
+    indx = 0
+    res = float("+inf")
+    
+    while num != 0:
+        count += num & i
+        
+        if count == 1:
+            res = min(res, indx)
+            
+        indx += 1
+        num >>= 1
+        
+    return (res, count)
+    
+    
+    
+size = II()
+
+for _ in range(size):
+    Mapping()
+    
+    
+    
