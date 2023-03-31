@@ -1,8 +1,6 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        
-        
-        
+
         str_val = str(x)
         if x < 0:
             new_val = [str(x) for x in str_val[1:]]
