@@ -7,8 +7,10 @@ class Solution:
             vertex_1, vertex_2 = edge
             graph[vertex_1].append(vertex_2)
             graph[vertex_2].append(vertex_1)
-            
-        ans = self.dfs(graph, visited, source, destination )
+        
+        
+        # ans = self.dfs(graph, visited, source, destination )
+        ans = self.iterative(graph, visited, source, destination)
         
         return ans
         
@@ -17,6 +19,8 @@ class Solution:
             return True
         
         visited.add(vertex)
+        
+        
         
         for neighbour in graph[vertex]:
             
@@ -27,6 +31,25 @@ class Solution:
                     return True
                 
                 
+        return False
+    
+    def iterative(self, graph, visited, vertex, destination):
+        stack = [vertex]
+        
+        
+        while stack:
+            node = stack.pop()
+            
+            visited.add(node)
+            
+            if node == destination:
+                return True
+            
+            for neighbour in graph[node]:
+                
+                if neighbour not in visited:
+                    stack.append(neighbour)
+                    
         return False
         
         
