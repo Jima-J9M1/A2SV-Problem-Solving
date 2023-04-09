@@ -25,21 +25,21 @@ class Solution:
                 
                 
             else:
+                #indices is list that store the position of the value which the right value is less than the value of left which means the left values that is greater than the current value will increment the count.
                 indices.append(ptr1)
-                # while cur < len(left):
-                #     left[cur][1] += 1
-                #     cur += 1
-                    
                 res.append((right[ptr2]))
                 ptr2 += 1
         
         result = [0] * len(left)
+        #put the index in result list to form the prefix sum 
         for index in indices:
             result[index] += 1
-        
+            
+        #form prefix sum
         for index in range(1,len(result)):
             result[index] = result[index] + result[index - 1]
-            
+        
+        #update the left list to the new value
         for index in range(len(left)):
             left[index][1] += result[index]
             
