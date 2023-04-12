@@ -1,0 +1,14 @@
+from collections import defaultdict
+
+n = int(input())
+adj_list = defaultdict(list)
+
+for j in range(n):
+    arr = list(map(int, input().split()))
+    for i in range(len(arr)):
+        if arr[i] == 1:
+            adj_list[j + 1].append(i + 1)
+            # adj_list[j + 1].append(j + 1)
+
+for ele in adj_list:
+    print(len(adj_list[ele]), *adj_list[ele])
