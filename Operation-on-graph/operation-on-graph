@@ -1,0 +1,15 @@
+from collections import defaultdict
+
+n = int(input())
+k = int(input())
+adjacent = defaultdict(list)
+
+for _ in range(k):
+    arr = list(map(int, input().split()))
+
+    if arr[0] == 1:
+        adjacent[arr[1]].append(arr[2])
+        adjacent[arr[2]].append(arr[1])
+    if arr[0] == 2:
+        if adjacent[arr[1]]:
+            print(*adjacent[arr[1]])
