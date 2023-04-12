@@ -1,0 +1,48 @@
+from collections import defaultdict
+
+
+length = int(input())
+grid = []
+
+for __ in range(length):
+    arr = list(map(int, input().split()))
+    grid.append(arr)
+
+rows = len(grid)
+cols = len(grid[0])
+source_val = [0]*rows
+sink_val = [0]*cols
+for row in range(rows):
+    flag = False
+    for col in range(cols):
+        if grid[row][col] == 1:
+            flag = True
+    if flag:
+        source_val[row] = 1
+
+for col in range(cols):
+    flag = False
+    for row in range(rows):
+        if grid[row][col] == 1:
+            flag = True
+        
+    if flag:
+        sink_val[col] = 1
+source = []
+sink = []
+for index in range(rows):
+    if source_val[index] == 1 and sink_val[index] == 1:
+        source_val[index] = 0
+        sink_val[index] = 0
+    elif source_val[index] == 0 and sink_val[index] == 0:
+        source_val[index] = 1
+        sink_val[index] = 1
+        source.append(index + 1)
+        sink.append(index + 1)
+    elif source_val[index] == 0 and sink_val[index] == 1:
+        sink.append(index + 1)
+    else:
+        source.append(index + 1)
+
+print(len(source), *source)
+print(len(sink), *sink)
