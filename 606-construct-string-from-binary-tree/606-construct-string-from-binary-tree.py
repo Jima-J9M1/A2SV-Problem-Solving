@@ -6,36 +6,50 @@
 #         self.right = right
 class Solution:
     def tree2str(self, root: Optional[TreeNode]) -> str:
-        path = [""]
-        self.dfs(root, path)
-        ans = path[0][:-1]
+#         path = [""]
+#         self.dfs(root, path)
+#         ans = path[0][:-1]
         
-        return ans
+#         return ans
+         return self.binary_tree(root)
         
-    def dfs(self, node, path):
-        if node.left == None and node.right == None:
-            path[0] += str(node.val)
-            path[0] += ")"
-            return 
+    def binary_tree(self,node):
+        if not node:
+            return ''
         
-        path[0] += str(node.val)
-
-        if node.left:
-            path[0] += "("
-            left = self.dfs(node.left, path)
+        subString  = str(node.val)
+        if not node.left and not node.right:
+            return subString
         
-        else:
-            path[0] += "("
-            path[0] += ')'
-            
+        subString += "(" + self.binary_tree(node.left) + ")"
         if node.right:
-            path[0] += "("
-            right = self.dfs(node.right, path)
-        # else:
-            # path[0] += ')'
+            subString += "(" + self.binary_tree(node.right) + ")"
             
-        path[0] += ")"
-        return 
+        return subString
+#     def dfs(self, node, path):
+#         if node.left == None and node.right == None:
+#             path[0] += str(node.val)
+#             path[0] += ")"
+#             return 
+        
+#         path[0] += str(node.val)
+
+#         if node.left:
+#             path[0] += "("
+#             left = self.dfs(node.left, path)
+        
+#         else:
+#             path[0] += "("
+#             path[0] += ')'
+            
+#         if node.right:
+#             path[0] += "("
+#             right = self.dfs(node.right, path)
+#         # else:
+#             # path[0] += ')'
+            
+#         path[0] += ")"
+#         return 
         
         
             
