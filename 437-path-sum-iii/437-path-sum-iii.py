@@ -7,24 +7,22 @@
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         hashmap = defaultdict(int, {0:1})
-        ans = self.dfs(root, 0, hashmap, targetSum)
+        ans = self.dfs(root,0, hashmap, targetSum)
         
         return ans
-        
-    def dfs(self, curr, prefx_sum, hashmap, target):
-        
-        if not curr:
+    
+    def dfs(self, curNode, prefix_sum, hashmap, targetSum):
+        if not curNode:
             return 0
         
-        prefx_sum += curr.val
         
-        path = hashmap[prefx_sum - target]
+        prefix_sum += curNode.val
+        path = hashmap[prefix_sum - targetSum]
         
-        hashmap[prefx_sum] += 1
+        hashmap[prefix_sum] += 1
         
-        path += self.dfs(curr.left, prefx_sum, hashmap, target) + self.dfs(curr.right, prefx_sum, hashmap, target)
+        path += self.dfs(curNode.left,prefix_sum ,hashmap, targetSum) + self.dfs(curNode.right, prefix_sum, hashmap, targetSum)
         
-        hashmap[prefx_sum] -= 1
-        
+        hashmap[prefix_sum] -= 1
         
         return path
