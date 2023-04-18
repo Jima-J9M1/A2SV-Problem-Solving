@@ -6,21 +6,24 @@
 #         self.right = right
 class Solution:
     def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
-        root_node = TreeNode(preorder[0])
+        root_node = None
         right = 1
         
-        for indx in range(1, len(preorder)):
-            self.addNode(preorder[indx], root_node)
+        for indx in range(len(preorder)):
+            root_node = self.addNode(preorder[indx], root_node)
         
         return root_node
     
-    
+    """
+    @param: val -> element from the preorder list
+    @param: rootNode -> root node
+    """
     def addNode(self, val, rootNode):
         if not rootNode:
             new_node = TreeNode(val)
             return new_node
             
-            
+        
         if val < rootNode.val:
             rootNode.left = self.addNode(val,rootNode.left)
         else:
