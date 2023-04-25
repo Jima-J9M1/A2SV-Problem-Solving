@@ -28,6 +28,7 @@ class Solution:
         visited[0].add(node)
         
         for child in graph[node]:
+            
             if child not in visited[0]:
                 self.dfs(graph, child, visited)
         
