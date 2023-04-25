@@ -17,18 +17,6 @@ class Solution:
             else:
                 right_ptr1 -= 1
                 
-#         while right_ptr1 >=  len(right):
-#             left_ptr1 = len(left) - 1
-#             while left_ptr1 >= 0:
-#                 if left[left_ptr1] > (2 * right[right_ptr1]):
-#                     res[0] += 1
-#                     left_ptr1 -= 1
-#                 else:
-#                     break
-                    
-#             right_ptr1 += 1
-                
-                
         
         
         
@@ -43,8 +31,7 @@ class Solution:
                 ptr1 += 1
             else:
                 merge_list.append(right[ptr2])
-                # if left[ptr1] > (2 * right[ptr2]):
-                #     print("here", left[ptr1], right[ptr2])
+
                 ptr2 += 1
         
         if ptr1 < len(left):
