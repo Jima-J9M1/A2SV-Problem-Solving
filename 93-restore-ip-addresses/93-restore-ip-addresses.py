@@ -12,6 +12,8 @@ class Solution:
         
         if path.count(".") == 4 and  (len(s) + 4) == len(path):
             arr = path.split('.')
+            
+            
             arr.pop()
             flag = True
             for ele in arr:
