@@ -17,6 +17,7 @@ class Solution:
         while queue:
             len_level = len(queue)
             level = []
+            
             for _ in range(len_level):
                 node = queue.popleft()
                 level.append(node.val)
@@ -28,10 +29,12 @@ class Solution:
                     queue.append(node.right)
                     
             if zigzag:
+                
                 zigzag_list.append(level)
                 zigzag = False
                 
             else:
+                
                 reverse_list = level[::-1]
                 zigzag_list.append(reverse_list)
                 
