@@ -11,34 +11,18 @@ class Solution:
                 
             else:
                 
-                min_val = heap[0]
-                
-                if ele - min_val[0] == 1:
-                    heappop(heap)
-                    heapq.heappush(heap, [ele, min_val[1] + 1])
-                    
-                elif ele - min_val[0] > 1:
-                    
-                    while heap and ele - heap[0][0] > 1:
-                        if min_val[1] < 3:
+                while heap and ele - heap[0][0] > 1:
+                        if heap[0][1] < 3:
                             return False
                         
-                        min_val = heappop(heap)
+                        heappop(heap)
+                
+                if not heap or ele - heap[0][0] != 1:
+                    heappush(heap, [ele,1])
                     
-                    if heap:
-                        min_val = heap[0]
-                        if ele - min_val[0] == 1:
-                            heappop(heap)
-                            heapq.heappush(heap, [ele, min_val[1] + 1])
-                            
-                        else:
-                            heapq.heappush(heap,[ele, 1])
-                            
-                    else:
-                        heapq.heappush(heap, [ele, 1])
-                        
                 else:
-                    heapq.heappush(heap, [ele, 1])
+                    heappush(heap, [ele, heappop(heap)[1] + 1])
+
                     
         for val, l in heap:
             if l < 3:
