@@ -3,7 +3,9 @@ class Solution:
         if node == self.rep[node]:
             return node
         
-        return self.find(self.rep[node])
+        ret = self.find(self.rep[node])
+        self.rep[node] = ret
+        return ret
         
         
         
