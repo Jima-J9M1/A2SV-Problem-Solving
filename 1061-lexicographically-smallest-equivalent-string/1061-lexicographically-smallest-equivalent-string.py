@@ -12,13 +12,24 @@ class Solution:
         parent_1 = self.find(str1)
         parent_2 = self.find(str2)
         
-        if parent_1 > parent_2:
-            self.rep[parent_1] = parent_2
-        else:
-            self.rep[parent_2] = parent_1
+        if parent_1 != parent_2:
+            if self.size[ord(parent_1) - 97] > self.size[ord(parent_2) - 97]:
+                self.rep[parent_2] = parent_1
+                self.size[ord(parent_1) - 97] += self.size[ord(parent_2) - 97]
+                
+            else:
+                self.rep[parent_1] = parent_2
+                self.size[ord(parent_2) - 97] += self.size[ord(parent_1) - 97]
+                
+                
+        # if parent_1 > parent_2:
+        #     self.rep[parent_1] = parent_2
+        # else:
+        #     self.rep[parent_2] = parent_1
             
     def smallestEquivalentString(self, s1: str, s2: str, baseStr: str) -> str:
         self.rep = {chr(i + 97) : chr(i + 97) for i in range(26)}
+        self.size = [0] * 26
         
 
         for i in range(len(s1)):
@@ -26,7 +37,13 @@ class Solution:
             
         s = []
         for ele in baseStr:
-            s.append(self.find(ele))
+            ptn = self.find(ele)
+            _min = 'z'
+            for i in range(26):
+                if ptn == self.find(chr(i+97)) and chr(i+97) < _min:
+                    _min=chr(i+97)
+                    
+            s.append(_min)
             
             
             
