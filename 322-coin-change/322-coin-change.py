@@ -1,27 +1,26 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        memo = {}
-        ans = self.dp(amount, coins, memo)
+#         if amount == 0:
+#             return 0
         
-        return ans if ans != float("+inf") else -1
-    
-    
-    def dp(self, amount, coins, memo):
-        if amount == 0:
-            return 0
-        if amount < 0:
-            return float("+inf")
+#         if len(coins) == 1:
+#             return amount if amount == coins[-1] else -1
         
-        if amount not in memo:
-            res = float("+inf")
-            for i in range(len(coins)):
-                
-                res = min(res,self.dp(amount - coins[i], coins,memo) + 1)
-            
-            memo[amount] = res
-                
-            
-        return memo[amount]
-    
+        arr = [-1] * (amount + 1)
+        arr[0] = 0
+
         
-        
+        for i in range(1, amount + 1):
+            for ele in coins:
+                coin = i - ele
+                if coin >= 0 and arr[coin] != -1:
+                    if arr[i] != -1:
+                        arr[i] = min(arr[coin] + 1, arr[i])
+                        
+                    else:
+                        arr[i] = arr[coin] + 1
+                        
+        return arr[amount]
+                    
+                    
+                    
