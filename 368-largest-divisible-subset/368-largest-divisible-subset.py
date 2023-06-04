@@ -35,7 +35,6 @@ class Solution:
                 ans = res[:]
                 max_length = n
                 
-        print(memo) 
         return ans
                 
         
