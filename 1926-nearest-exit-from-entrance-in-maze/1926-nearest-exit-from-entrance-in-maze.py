@@ -11,35 +11,28 @@ class Solution:
         flag = True
         
         while queue:
+            
             len_level = len(queue)
+            
             for i in range(len_level):
                 row, col = queue.popleft()
+                
                 for new_row, new_col in directions:
                     new_row += row
                     new_col += col
                     
                     if not isbound(new_row, new_col):
                         if level != 0:
-                            min_val = level
-                            flag = False
-                            break
+                            return level
+                            
                     elif isbound(new_row, new_col) and maze[new_row][new_col] == ".":
                         
                         queue.append([new_row, new_col])
                         maze[new_row][new_col] = False
                        
-                    
-                if not flag:
-                    break
-                    
             level += 1
                 
-                
-                
-            if not flag:
-                break
-                
-        return min_val if min_val != float('inf') else -1
+        return -1
                 
         
                         
