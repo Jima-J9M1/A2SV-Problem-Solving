@@ -6,76 +6,89 @@
 #         self.right = None
 
 class Solution:
-    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        self.target = target.val
-        self.k = k
-        self.ans = []
+    def bfs(self, node, tar):
+        level = 1
+        queue = deque()
+        queue.append(node)
+        answer = []
         
-        if k == 0:
-            return [target.val]
+        if tar == 0:
+            answer.append(node.val)
+            return answer
         
-        self.parentNodes(root,[])
-        
-        
-        
-        
-        return self.ans
+        while queue:
+            length = len(queue)
+            for jim in range(length):
+                temp = queue.popleft()
+                if temp.left:
+                    queue.append(temp.left)
+                    if level == tar:
+                        answer.append(temp.left.val)
+                if temp.right:
+                    queue.append(temp.right)
+                    if level == tar:
+                        answer.append(temp.right.val)
+            if level == tar:
+                break
+            level += 1
+        return answer
     
-    
-    #find the parent node distance from the target node is less than or equal to the a k distance
-    def parentNodes(self, root, arr):
-        if root is None:
-            return 
+    def dfs(self, node, target):
+        if not node:
+            return 0
         
-        #find the node val that statisfy the condition of the k distance from target val
-        #store the parent node to the arr which used to travers to the backward
-        if root.val != self.target:
-            arr.append(root)
-            self.parentNodes(root.left,arr)
-            self.parentNodes(root.right,arr)
+        if node.val == target:
+            return 1
+        
+        left = self.dfs(node.left, target)
+        right = self.dfs(node.right, target)
+        
+        if left:
+            self.dict[node] = (left, True)
+            return left + 1
+        elif right:
+            self.dict[node] = (right, False)
             
-            if arr:
-                arr.pop()
-                
+            return right + 1
         else:
-            
-            #calculate the node if the k distance is less than zero
-            k = self.k
-            
+            return 0
 
-            #calculate the node chalid
-            self.DistanceNode(root.left, k - 1 , None)
-            self.DistanceNode(root.right, k - 1, None)
-            
-            avoid = root
-            
-            # calculate the backtracking of parent and avoid used to disclude the visited node
-            while arr and k >= 0:
-                k -= 1
-                node = arr.pop()
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        self.dict = {}
+        self.dfs(root, target.val)
+        abs_answer = []
+        abs_answer.extend(self.bfs(target, k))
+        for node in self.dict:
+            if self.dict[node][0] == k:
+                abs_answer.append(node.val)
+                continue
+            if self.dict[node][1]:
+                if node.right:
+                    result = self.bfs(node.right, k - self.dict[node][0] - 1)
+                    abs_answer.extend(result)
+            elif node.left:
+                result = self.bfs(node.left, k - self.dict[node][0] - 1)
+                abs_answer.extend(result)
                 
-                self.DistanceNode(node, k, avoid)
-                avoid = node
-                
-            
-            
-        #find the distance between the node's
-    def DistanceNode(self,root, k, avoid):
+        return abs_answer
         
-        if not root:
-            return 
         
-        if k == 0:
-            self.ans.append(root.val)
-            
-        elif k > 0:
-            k -= 1
-            if root.left != avoid:
-                self.DistanceNode(root.left , k, None)
-
-            if root.right != avoid:
-                self.DistanceNode(root.right ,k, None)
-            
-            
-            
-            
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
