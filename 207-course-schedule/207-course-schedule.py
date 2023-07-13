@@ -1,33 +1,33 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        
         graph = defaultdict(list)
-        degree = [0] * numCourses
-        queue =deque()
-        res = []
-        for course, precourse in prerequisites:
-            graph[precourse].append(course)
-            degree[course] += 1
-            
-            
-        for indx in range(len(degree)):
-            if degree[indx] == 0:
-                queue.append(indx)
+        degree = [0]*numCourses
+        numSelectedCourses = []
+        queue = deque()
+        
+        
+        for v1, v2 in prerequisites:
+            graph[v2].append(v1)
+            degree[v1] += 1
+        
+        for i in range(len(degree)):
+            if degree[i] == 0:
+                queue.append(i)
                 
+        
+                        
         while queue:
-            preCourse = queue.popleft()
+            node = queue.popleft()
             
-            res.append(preCourse)
+            numSelectedCourses.append(node)
             
-            for neighbor in graph[preCourse]:
-                degree[neighbor] -= 1
-                
-                if degree[neighbor] == 0:
-                    queue.append(neighbor)
+            for child in graph[node]:
+                degree[child] -= 1
+                if degree[child] == 0:
+                    queue.append(child)
                     
-            
-            
-        if len(res) == numCourses:
+        if len(numSelectedCourses) == numCourses:
             return True
         
+        # print(numSelectedCourses)
         return False
