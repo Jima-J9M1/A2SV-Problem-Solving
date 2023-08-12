@@ -1,13 +1,23 @@
 class Solution:
     def find(self, rep, node):
-        if node == rep[node]:
-            return node
+        parent = node
+        
+        while parent != rep[parent]:
+            parent = self.find(rep, rep[parent])
+            
+        while node != rep[node]:
+            rep[node] = parent
+            node = self.find(rep, rep[node])
+        
+        return parent
+#         if node == rep[node]:
+#             return node
 
-        ans = self.find(rep, rep[node])
-        rep[node] = ans
+#         ans = self.find(rep, rep[node])
+#         rep[node] = ans
         
         
-        return ans
+#         return ans
     
     def union(self, rep, node1, node2,size):
         parent_1 = self.find(rep, node1)
