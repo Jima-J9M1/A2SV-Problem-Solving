@@ -1,9 +1,13 @@
 class Solution:
     def find(self, rep, node):
-        if rep[node] != node:
-            rep[node] = self.find(rep, rep[node])
+        if node == rep[node]:
+            return node
+
+        ans = self.find(rep, rep[node])
+        rep[node] = ans
         
-        return rep[node]
+        
+        return ans
     
     def union(self, rep, node1, node2,size):
         parent_1 = self.find(rep, node1)
