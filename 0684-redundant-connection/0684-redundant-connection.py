@@ -3,11 +3,12 @@ class Solution:
         parent = node
         
         while parent != rep[parent]:
-            parent = self.find(rep, rep[parent])
+            parent = rep[parent]
             
-        while node != rep[node]:
+        while node != parent:
+            root = rep[node]
             rep[node] = parent
-            node = self.find(rep, rep[node])
+            node = root
         
         return parent
 #         if node == rep[node]:
