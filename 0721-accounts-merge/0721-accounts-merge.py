@@ -53,47 +53,31 @@ class Solution:
         # find accounts that have the same representative and merge those accounts and sort each account email
         # return the accounts
         #Time Complexity (1000) * (1000)
-        
         n = len(accounts)
         representative = {i : i for i in range(n)}
+        owner = {}
         size = [1] * n
 
         
-        for indx, account in enumerate(accounts):
-            for j in range(indx + 1, len(accounts)):
+        for i, (_, *emails) in enumerate(accounts):
+            for email in emails:
+                if email in owner:
+                    self.union(representative, size, i, owner[email])
+                    
+                owner[email] = i
                 
-                if account[0] == accounts[j][0]:
-                    flag = False
-                    for e_indx in range(1,len(account)):
-                        for e2_indx in range(1, len(accounts[j])):
-                            
-                            if account[e_indx] == accounts[j][e2_indx]:
-                                self.union(representative, size, indx, j)
-                                flag = True
-                                break
-                        if flag:
-                            break
-                            
-        for i in range(n):
-            representative[i] = self.find(representative, size, i)
-        
-        ans = defaultdict(set)
-        
-        for i in range(n):
-            rep = representative[i]
-            ans[(rep, accounts[rep][0])] |= set((accounts[i][1:]))
-        
-        
-        result = []
-        for key in ans:
-            name = key[1]
-            emails = sorted(list(ans[key]))
+        ans = defaultdict(list)
+        for email, rep in owner.items():
+            rep = self.find(representative, size, rep)
+            ans[rep].append(email)
             
-            result.append([name] + emails)
             
+        return [[accounts[i][0]] + sorted(emails) for i, emails in ans.items()]
         
-        return result
-            
+        
+                    
+                    
+        
             
             
             
