@@ -8,7 +8,6 @@ class Solution:
         n = len(s)
         root = self.buildTrie(dictionary)
         
-        print(root)
         @cache
         def dp(start):
             if start == n:
