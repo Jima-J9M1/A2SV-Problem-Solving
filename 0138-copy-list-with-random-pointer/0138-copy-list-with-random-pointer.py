@@ -9,32 +9,49 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        #goal: return the head of the copied linked list
+        #approach: hash the original to the copied one
+        #        : the link the copied to the next new node
+        #        : after that from from the begining link the node and with their random
         if not head:
-            return
+            return 
         
         cur = head
-        _dict = {}
+        hashmap = dict()
         prev = None
-        
         while cur:
-            _dict[cur] = copy.copy(cur)
+            hashmap[cur] = copy.copy(cur)
             
             if prev:
-                _dict[prev].next = _dict[cur]
+                hashmap[prev].next = hashmap[cur]
                 
             prev = cur
             cur = cur.next
-        
+            
         cur = head
         
         while cur:
             if cur.random:
-                _dict[cur].random = _dict[cur.random]
-                
+                hashmap[cur].random = hashmap[cur.random]
+            
             cur = cur.next
-        
-        return _dict[head]
-        
-        
-        
-        
+            
+        return hashmap[head]
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
