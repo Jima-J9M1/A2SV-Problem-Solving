@@ -3,6 +3,7 @@ class Solution:
         if n == 1:
             return 0
         
+        @cache
         def dp(inital, final, length):
             if final > n:
                 return float("inf")
