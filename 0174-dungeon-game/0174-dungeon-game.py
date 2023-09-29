@@ -11,21 +11,16 @@ class Solution:
         for i in range(m - 1, -1, -1):
             for j in range(n - 1, -1 , -1):
                 if i == m - 1 and j == n - 1:
-                    continue
-                    
+                    continue  
                 val = max(grid[i + 1][j], grid[i][j + 1])
+                
                 if val > 0:
                     if dungeon[i][j] <= 0:
                         grid[i][j] = dungeon[i][j] - 1
                     else:
-                        grid[i][j] = dungeon[i][j]
-                    
+                        grid[i][j] = dungeon[i][j]     
                 else:
-                    if dungeon[i][j] <= 0:
-                        grid[i][j] = (dungeon[i][j]) + val
-                    else:
-                        grid[i][j] = -1 if dungeon[i][j] + val == 0 else dungeon[i][j] + val
+                    grid[i][j] = -1 if dungeon[i][j] + val == 0 else dungeon[i][j] + val
             
-        # print(grid)
         return -grid[0][0] if grid[0][0] < 0 else 1
                 
