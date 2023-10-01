@@ -10,7 +10,7 @@ class Solution:
         
         dp = [0]*n
         dp[-1] = arr[-1][1]
-        print(arr)
+        
         for i in range(n - 2, -1, -1):
             max_val = 0
             for j in range(i + 1, n):
