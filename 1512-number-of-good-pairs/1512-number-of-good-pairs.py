@@ -1,38 +1,13 @@
 class Solution:
     def numIdenticalPairs(self, nums: List[int]) -> int:
+        freq_num = Counter(nums)
         
-        count_pairs = 0
-        _dict = {}
-        
-        for val in nums:
-            
-            if val in _dict:
-                _dict[val] += 1
-            else:
-                _dict[val] = 1
-        
-        for key in _dict:
-            
-            val = _dict[key]
-            
-            for indx in range(val):
-                count_pairs += indx
+        num_goods = 0
+        for key in freq_num:
+            if freq_num[key] > 1:
+                n = freq_num[key]
+                num_goods += (n - 1)*(n)// 2
                 
-        return count_pairs
                 
-        
-        
-        
-#         count = 0
-#         length = len(nums)
-        
-#         for index in range(length):
-#             left = index + 1
-            
-#             while left < length:
+        return num_goods
                 
-#                 if nums[index] == nums[left]:
-#                     count += 1
-#                 left += 1
-                
-#         return count
