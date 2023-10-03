@@ -7,7 +7,7 @@ class Solution:
             
             difference_arr.append([diff, left, right])
         
-        sorted_arr = self.pivotSort(difference_arr)
+        sorted_arr = sorted(difference_arr)
         
         comp_a = 0
         comp_b = 0
@@ -27,19 +27,19 @@ class Solution:
         
         
         
-    def pivotSort(self,nums):
-        if len(nums) <= 1:
-            return nums
+#     def pivotSort(self,nums):
+#         if len(nums) <= 1:
+#             return nums
         
-        pivot = nums[0]
-        left = []
-        right = []
+#         pivot = nums[0]
+#         left = []
+#         right = []
         
-        for i in range(1, len(nums)):
-            if nums[i] > pivot:
-                right.append(nums[i])
-            else:
-                left.append(nums[i])
+#         for i in range(1, len(nums)):
+#             if nums[i] > pivot:
+#                 right.append(nums[i])
+#             else:
+#                 left.append(nums[i])
                 
                 
-        return self.pivotSort(left) + [pivot] + self.pivotSort(right)
+#         return self.pivotSort(left) + [pivot] + self.pivotSort(right)
