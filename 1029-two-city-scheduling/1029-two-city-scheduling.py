@@ -26,7 +26,6 @@ class Solution:
             
         
         
-        print(sort_arr)
         
     def pivotSort(self,nums):
         if len(nums) <= 1:
