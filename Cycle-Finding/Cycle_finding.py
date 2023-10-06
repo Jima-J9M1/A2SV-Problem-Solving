@@ -73,4 +73,4 @@ def solve():
     else:
         print("NO")
  
-solve(
+solve()
