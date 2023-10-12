@@ -1,53 +1,54 @@
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
-        if len(haystack) < len(needle):
+        if len(needle) > len(haystack):
             return -1
         
-        
-        
-        needle_hash = 0
-        subarry_hash = 0
-        length = len(needle)
-        left = 0
-        right = length - 1
-        
-        for indx, ch in enumerate(needle):
-            ch_num = ord(ch) - ord('a') + 1
-            expo = len(needle) - (indx + 1)
-            needle_hash += ch_num * 26**(expo)
-         
-        for indx in range(length):
-            ch_num = ord(haystack[indx]) - ord('a') + 1
-            expo = len(needle) - (indx + 1)
-            subarry_hash += ch_num * 26**(expo)
-         
-        needle_hash %= 1_000_000_007
-        subarry_hash %= 1_000_000_007
-        
-        if needle_hash == subarry_hash:
-            return left
-        
-        right += 1
-        
-        while right < len(haystack):
-            ch_num = ord(haystack[left]) - ord('a') + 1
-            expo = length - 1
-            ch_hash_l = ch_num * 26**(expo)
-            left += 1
-            subarry_hash -= ch_hash_l
-            subarry_hash *= 26
+        def LPSFunction(st):
+            prevLPS = 0
+            i = 1
             
-            ch_num = ord(haystack[right]) - ord('a') + 1
-            expo = 0
-            ch_hash_r = ch_num * 26**(expo)
+            LPS = [0]*len(st)
             
-            subarry_hash += ch_hash_r
-            subarry_hash %= 1_000_000_007
-            
-            if needle_hash == subarry_hash:
-                return left
-                break
+            while i < len(st):
+                if st[prevLPS] == st[i]:
+                    LPS[i] = prevLPS + 1
+                    prevLPS += 1
+                    i += 1
+                    
+                else:
+                    if prevLPS == 0:
+                        i += 1
+                        
+                    else:
+                        prevLPS = LPS[prevLPS - 1]
+                        
+                        
+            return LPS
+        
+        
+        LPS = LPSFunction(needle)
+        
+        needle_ptr = 0
+        hay_ptr = 0
+        
+        while hay_ptr < len(haystack) and needle_ptr < len(needle):
+            if needle[needle_ptr] == haystack[hay_ptr]:
+                needle_ptr += 1
+                hay_ptr += 1
                 
-            right += 1
-            
+            else:
+                if needle_ptr == 0:
+                     hay_ptr += 1
+                    
+                else:
+                    needle_ptr = LPS[needle_ptr - 1]
+             
+        
+        if needle_ptr == len(needle) and hay_ptr >= len(needle):
+            return hay_ptr - needle_ptr
+        
         return -1
+            
+            
+            
+            
