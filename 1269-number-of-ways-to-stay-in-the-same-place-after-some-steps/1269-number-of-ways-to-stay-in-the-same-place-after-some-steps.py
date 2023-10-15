@@ -2,7 +2,7 @@ class Solution:
     def numWays(self, steps: int, arrLen: int) -> int:
         
         @cache
-        def dp(direction, numStep, indxPos):
+        def dp(numStep, indxPos):
             if numStep == steps:
                 if indxPos == 0:
                     return 1
@@ -12,17 +12,15 @@ class Solution:
             if indxPos >= arrLen or indxPos < 0:
                 return 0
             
-            stay = dp(0, numStep + 1, indxPos)
-            left = dp(1, numStep + 1, indxPos - 1)
-            right = dp(2, numStep + 1, indxPos + 1)
+            ans = dp(numStep + 1, indxPos)
+            ans += dp(numStep + 1, indxPos - 1)
+            ans += dp(numStep + 1, indxPos + 1)
             
             
-            return stay + left + right
+            return ans
         
         
-        stay = dp(0, 1, 0)
-        right = dp(2, 1, 1)
+        result = dp(0,0) % 1_000_000_007
         
-        
-        return (stay % 1_000_000_007 + right % 1_000_000_007) % 1_000_000_007
+        return result
                 
