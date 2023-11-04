@@ -26,53 +26,80 @@ class Solution:
         #if we reach the end of the string we return the ans variable.
         
         
-        def decode(s):
-            ans = ""
-            i = 0
+        
+        stack = []
+        curNum = 0
+        curString = ""
+        
+        for ch in s:
+            if ch == '[':
+                stack.append(curString)
+                stack.append(curNum)
+                curString = ""
+                curNum = 0
+                
+            elif ch == ']':
+                prevNum = stack.pop()
+                prevString = stack.pop()
+                curString = prevString + prevNum*curString
+            elif ch.isdigit():
+                
+                curNum = curNum*10 + int(ch)
+                
+            else:
+                curString += ch
+                
+        
+        return curString
+    
+    
+#         def decode(s):
+#             ans = ""
+#             i = 0
             
-            while i < len(s):
-                if not s[i].isdigit():
-                    ans += s[i]
-                    # print(s[i])
+#             while i < len(s):
+#                 if not s[i].isdigit():
+#                     ans += s[i]
+#                     # print(s[i])
                     
-                else:
-                    # print(s[i])
-                    #after we found the number we garuante that the next character is square bracket
-                    digit = s[i]
-                    i += 1
-                    while s[i].isdigit():
-                        digit += s[i]
-                        i += 1
+#                 else:
+#                     # print(s[i])
+#                     #after we found the number we garuante that the next character is square bracket
+#                     digit = s[i]
+#                     i += 1
+#                     while s[i].isdigit():
+#                         digit += s[i]
+#                         i += 1
                         
-                    i += 1
-                    digit = int(digit)
-                    square_brac = 1
+#                     i += 1
+#                     digit = int(digit)
+#                     square_brac = 1
                     
                     
-                    start = i
+#                     start = i
                     
-                    while i < len(s) and square_brac != 0:
-                        if s[i] == '[':
-                            square_brac += 1
+#                     while i < len(s) and square_brac != 0:
+#                         if s[i] == '[':
+#                             square_brac += 1
                             
-                        if s[i] == ']':
-                            square_brac -= 1
+#                         if s[i] == ']':
+#                             square_brac -= 1
                             
-                        i += 1
+#                         i += 1
                         
-                    ans += (digit * decode( s[start:i - 1]))
+#                     ans += (digit * decode( s[start:i - 1]))
                     
-                    continue
+#                     continue
                     
                     
-                i += 1
+#                 i += 1
                 
                 
-            return ans
+#             return ans
             
-        res = decode(s)
+#         res = decode(s)
             
-        return res
+#         return res
         
         
                         
