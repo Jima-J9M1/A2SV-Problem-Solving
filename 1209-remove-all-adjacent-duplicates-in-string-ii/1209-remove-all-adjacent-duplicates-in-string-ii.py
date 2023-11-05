@@ -1,28 +1,39 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
+        #GIve: s, k(number of duplicated letters in s, they must be adjacent)
+        #the answer is unique, which means no multiple answer
+        #Return: string after the deletion of duplicate ch
+        # s = abcd, k = 2 -> abcd
+        # s = "deeedbbcccbdaa", k = 3 -> ddbbcccbdaa -> ddbbbdaa -> dddaa -> aa
+        #                   i
+        # stack = [[a,2]]
+        # ans += stack[-1][1] * stacl[-1][0] 
+        # time complexity: suppos N is the length of string O(N)
+        # Space complexity: O(N)
+        
         
         stack = []
-        ptr = 0
+        ans = ""
         
-        while ptr < len(s):
-            if stack and stack[-1][0] == s[ptr] and stack[-1][1] == k - 1:
-                for i in range(k - 1):
+        for ch in s:
+            if stack and stack[-1][0] == ch:
+                if stack[-1][1] == k - 1:
                     stack.pop()
-                    
-                    
-            else:
-                if stack and stack[-1][0] == s[ptr]:
-                    stack.append((s[ptr], stack[-1][1] + 1))
                 else:
-                    stack.append((s[ptr], 1))
+                    stack[-1][1] += 1
+            else:
+                stack.append([ch, 1])
                 
-            ptr += 1
+                
+        for ele, freq in stack:
+            ans += (freq * ele)
             
-        res = ""
+            
+            
+        return ans
+                
+                
         
-        for ele in stack:
-            res += ele[0]
-            
-            
-        return res
+        
+        
         
