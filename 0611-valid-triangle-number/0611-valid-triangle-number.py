@@ -4,25 +4,29 @@ class Solution:
         
         count = 0
         for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
-                
-                start = j + 1
-                end = len(nums) - 1
+            k = i + 2
+            
+            if nums[i] != 0:
+                for j in range(i + 1, len(nums)):
 
-                res = None
+                    start = k
+                    end = len(nums) - 1
+
+                    res = None
 
 
-                while start <= end:
-                    mid = start + (end - start) // 2
+                    while start <= end:
+                        mid = start + (end - start) // 2
 
-                    if nums[i] + nums[j] > nums[mid]:
-                        res = mid
-                        start = mid + 1
-                    else:
-                        end = mid - 1
+                        if nums[i] + nums[j] > nums[mid]:
+                            res = mid
+                            start = mid + 1
+                        else:
+                            end = mid - 1
 
-                if res:
-                    count += res - j
+                    if res:
+                        count += res - j
+                        k = res
                         
                         
                         
